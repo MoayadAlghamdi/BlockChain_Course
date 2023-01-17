@@ -3,17 +3,17 @@ const { createHash } = require('crypto');
 class Block{
     Index
     Time_Stamp
-    Previce_Hash
+    Previous_Hash
     Hash
     Data
     Nonce
     Height
 
-    constructor(index,data,previce_hash,nonce,height){
+    constructor(index,data,previous_hash,nonce,height){
         this.Index = index;
         this.Hash = this.HashFunction(data);
         this.Data = data;
-        this.Previce_Hash = previce_hash;
+        this.Previous_Hash = previous_hash;
         this.Nonce = nonce;
         this.Height = height;
         this.Time_Stamp = new Date();
@@ -21,9 +21,10 @@ class Block{
      HashFunction() {
         return createHash('sha256').update(this.Index+this.Nonce+this.Data+this.Previce_Hash).digest('hex');
     }
-    HashFunction(previce_hash) {
-        return createHash('sha256').update(previce_hash).digest('hex');
-    }
+    /*
+    HashFunction(previous_hash) {
+        return createHash('sha256').update(previous_hash).digest('hex'); 
+    }*/
     
 }
 var block = new Block(96422,"Saleh -> Moayad 1.5 BTC","e3cc006d0e089cc0d9bc21ba5a09857984ee2d226dcb552c0f608a7869b8133b",4059,677350);
