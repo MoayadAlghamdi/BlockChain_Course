@@ -3,7 +3,7 @@ const { createHash } = require('crypto');
 class Block {
     constructor(data) {
         this.Index = 0;
-        this.Time_Stamp = new Date();
+        //this.Time_Stamp = new Date();
         this.Data = data;
         this.Hash = this.HashFunction();
         this.Previous_Hash = ""; // previous block's hash
@@ -74,9 +74,9 @@ class BlockChain {
             if(this.blockchainList[i].Hash != this.blockchainList[i].HashFunction()){
                 this.Found = "\nInvalid Because The Block Index("+i+") Has been changed";
             }
-        }
-        if (this.blockchainList[0] != this.getGenesisBlock()){
-            this.Found = "\nGenesis Block is Invalid";
+        }l
+       if (this.blockchainList[0].Hash != this.getGenesisBlock().Hash){
+        return "Invalid";
         }
         return this.Found;
     }
