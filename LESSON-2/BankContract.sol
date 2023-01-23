@@ -31,15 +31,13 @@ contract Counter{
         counter++;
     }
     function makeAdmin(address _address) public{
-        User memory user = User(counter,_address,UserType.Admin);
-        accounts[msg.sender] = user;
+        accounts[_address].userType = UserType.Admin;
         isAdminType[msg.sender] = true;
-        counter++;
     }
 
     function promoto() public{
-    require(isAdminType[msg.sender] == true, "Ownership Assertion: Caller of the function is not the owner.");
-      
+        require(isAdminType[msg.sender] == true, "You don't admin.");
+        makeAdmin(msg.sender);
     }
 
     function depositMoney() public payable{
